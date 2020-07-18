@@ -1,0 +1,60 @@
+{% extends "layout.html" %}
+{% block content %}
+	<div class="content-section">
+		<div class="media">
+			<img class="rounded-circle account-img" src="{{ image_pass }}"/>
+			<div>
+				<h2 class="account-heading">{{ current_user.username }}</h2>
+				<p class="text-secondary">{{ current_user.email }}</p>
+			</div>
+		</div>
+		<form action="" method="POST" enctype="multipart/form-data">
+			{{update_info.hidden_tag()}}
+			<div class="form-group">
+				{{ update_info.txtUsername.label(class="form-control-label") }}
+
+				{% if update_info.txtUsername.errors %}
+					{{ update_info.txtUsername(class="form-control is-invalid") }}
+					<div class="invalid-feedback">
+						{% for error in update_info.txtUsername.errors %}
+							<span>{{ error }}</span>
+						{% endfor %}
+					</div>
+				{% else %}	
+					{{ update_info.txtUsername(class="form-control") }}
+				{% endif %}
+			</div>
+
+			<div class="form-group">
+				{{ update_info.txtEmail.label(class="form-control-label") }}
+
+				{% if update_info.txtEmail.errors %}
+					{{ update_info.txtEmail(class="form-control is-invalid") }}
+					<div class="invalid-feedback">
+						{% for error in update_info.txtEmail.errors %}
+							<span>{{ error }}</span>
+						{% endfor %}
+					</div>
+				{% else %}	
+					{{ update_info.txtEmail(class="form-control") }}
+				{% endif %}
+			</div>
+
+			<div class="form-group">
+				{{ update_info.imgProfilePic.label() }}
+				{{update_info.imgProfilePic(class="form-control-file")}}
+				{% if update_info.imgProfilePic.errors %}
+					{% for error in update_info.imgProfilePic.errors %}
+						<span class="text-danger">{{ error }}</span>
+					{% endfor %}
+				{% endif %}
+			</div>
+
+			<div class="form-group">
+				{{ update_info.btnUpdate(class="btn btn-outline-info") }}
+			</div>
+		</form>
+	
+	</div>
+	
+{% endblock content %}

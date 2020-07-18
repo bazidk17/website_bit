@@ -1,0 +1,57 @@
+{% extends "layout.html" %}
+{% block content%}
+	<div class="content-section">
+		<fieldset>
+			<legend>{{title}}</legend>
+			<form action="" method="POST">
+				{{form_content.hidden_tag()}}
+				<div class="form-group">
+					{{form_content.txtTitle.label(class="form-control-label")}}
+					
+					{% if form_content.txtTitle.errors %}
+						{{form_content.txtTitle(class="form-control is-invalid")}}
+						<div class="invalid-feedback">
+							<% for error in form_content.txtTitle.errors %>
+								<span>{{error}}</span>
+							<% endfor %>
+						</div>
+					{% else %}
+						{{form_content.txtTitle(class="form-control")}}
+					{% endif %}
+				</div>
+				<div class="form-group">
+					{{form_content.txtContent.label(class="form-control-label")}}
+					
+					{% if form_content.txtContent.errors %}
+						{{form_content.txtContent(class="form-control is-invalid")}}
+						<div class="invalid-feedback">
+							<% for error in form_content.txtContent.errors %>
+								<span>{{error}}</span>
+							<% endfor %>
+						</div>
+					{% else %}
+						{{form_content.txtContent(class="form-control")}}
+					{% endif %}
+				</div>
+
+				<div class="form-group">
+					{{form_content.ddTopic.label(class="form-control-label")}}
+					
+					{% if form_content.ddTopic.errors %}
+						{{form_content.ddTopic(class="form-control is-invalid")}}
+						<div class="invalid-feedback">
+								<span>Please select a topic.</span>
+						</div>
+					{% else %}
+						{{form_content.ddTopic(class="form-control")}}
+					{% endif %}
+				</div>
+				<!-- put the type selection here  -->
+
+				<div class="form-group">
+					{{form_content.btnPost(class="btn btn-outline-info")}}
+				</div>
+			</form>
+		</fieldset>
+	</div>
+{% endblock content%}

@@ -1,0 +1,72 @@
+{%extends "layout.html"%}
+{%block content%}
+	<div class="content-section">
+		<fieldset class="form-group">
+			<legend>Join Today</legend>
+			<form action="" method="POST">
+				{{form_content.hidden_tag()}}
+				<div class="form-group">
+					{{form_content.txtUsername.label(class="form-control-label")}}
+
+					{% if form_content.txtUsername.errors %}
+						{{form_content.txtUsername(class="form-control is-invalid")}}
+						<div class="invalid-feedback">
+							{% for error in form_content.txtUsername.errors %}
+								<span>{{error}}</span>
+							{% endfor %}
+						</div>
+					{% else %}
+						{{form_content.txtUsername(class="form-control")}}
+					{% endif %}
+				</div>
+				<div class="form-group">
+					{{form_content.txtEmail.label(class="form-control-label")}}
+					
+					{% if form_content.txtEmail.errors%}
+						{{form_content.txtEmail(class="form-control is-invalid")}}
+						<div class="invalid-feedback">
+							{% for error in form_content.txtEmail.errors %}
+								<span>{{error}}</span>
+							{% endfor %}
+						</div>
+					{% else %}
+						{{form_content.txtEmail(class="form-control")}}
+					{% endif %}
+					
+				</div>
+				<div class="form-group">
+					{{form_content.txtPassword.label(class="form-control-label")}}
+
+					{% if form_content.txtPassword.errors%}
+						{{form_content.txtPassword(class="form-control is-invalid")}}
+						<div class="invalid-feedback">
+							{% for error in form_content.txtPassword.errors %}
+								<span>{{error}}</span>
+							{% endfor %}
+						</div>
+					{% else %}
+						{{form_content.txtPassword(class="form-control")}}
+					{% endif %}
+				</div>
+				<div class="form-group">
+					{{form_content.txtConfirm_Pass.label(class="form-control-label")}}
+					
+					{% if form_content.txtConfirm_Pass.errors%}
+						{{form_content.txtConfirm_Pass(class="form-control is-invalid")}}
+						<div class="invalid-feedback">
+							{% for error in form_content.txtConfirm_Pass.errors %}
+								<span>{{error}}</span>
+							{% endfor %}
+						</div>
+					{% else %}
+						{{form_content.txtConfirm_Pass(class="form-control")}}
+					{% endif %}
+				</div>
+				<div class="form-group">
+					{{form_content.btnRegister(class="btn btn-outline-info")}}
+				</div>
+			</form>
+		</fieldset>
+	</div>
+	<small class="text-muted">Already Registered? <a href="{{url_for('login')}}">Sign In</a></small>
+{%endblock content%}

@@ -1,0 +1,41 @@
+{% extends "layout.html" %}
+{% block content %}
+
+	{% for post in display_info.items %}
+	<div class="media content-section">
+		<img class="rounded-circle article-img" src="{{ url_for('static',filename='Profile/'+post.author.profile_pic) }}"/>
+		<div class="media-body">
+		<div class="article-metadata">
+			<a class="mr-2">{{ post.author.username }}</a>
+			<small class="text-muted">{{ post.dateposted.strftime("%Y-%m-%d") }}</small>
+
+			
+		</div>
+		<h2><a class="article-title" href="{{ url_for('post',post_id=post.id) }}">{{ post.title }}</a></h2>
+		<!-- <p class="article-content">{{post.content}}</p> -->
+		</div>
+	</div>
+	{% endfor %}
+
+	{% for pageNum in display_info.iter_pages(right_edge=1,left_edge=1,left_current=1,right_current=2) %}
+		{% if pageNum%}
+			{% if pageNum==display_info.page %}
+				{% if topic=="all" %}
+					<a class="btn btn-info mb-4" href="{{ url_for('home',page=pageNum) }}">{{pageNum}}</a>
+				{% else %}
+					<a class="btn btn-info mb-4" href="{{ url_for('filter_home',page=pageNum,info_to_display=topic) }}">{{pageNum}}</a>
+				{% endif %}
+			{% else %}
+				{% if topic=="all" %}
+					<a class="btn btn-outline-info mb-4" href="{{ url_for('home',page=pageNum) }}">{{pageNum}}</a>
+				{% else %}
+					<a class="btn btn-outline-info mb-4" href="{{ url_for('filter_home',page=pageNum,info_to_display=topic) }}">{{pageNum}}</a>
+				{% endif %}
+			{% endif %}
+		{% else %}
+			...
+		{% endif %}
+	{% endfor %}
+
+
+{% endblock content%}

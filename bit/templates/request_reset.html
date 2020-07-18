@@ -1,0 +1,30 @@
+{% extends "layout.html" %}
+{% block content%}
+	<div class="content-section">
+		<fieldset>
+			<legend>Request Password</legend>
+			<form action="" method="POST">
+				{{form_content.hidden_tag()}}
+				<div class="form-group">
+					{{form_content.txtEmail.label(class="form-control-label")}}
+					
+					
+					{% if form_content.txtEmail.errors %}
+						{{form_content.txtEmail(class="form-control is-invalid")}}
+						<div class="invalid-feedback">
+							{% for error in form_content.txtEmail.errors %}
+								<span>{{error}}</span>
+							{% endfor %}
+						</div>
+					{% else %}
+						{{form_content.txtEmail(class="form-control")}}
+					{% endif %}
+				</div>
+				
+				<div class="form-group">
+					{{form_content.btnRequest(class="btn btn-outline-info")}}
+				</div>
+			</form>
+		</fieldset>
+	</div>
+{% endblock content%}
